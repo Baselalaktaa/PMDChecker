@@ -1,5 +1,11 @@
 
+import net.sourceforge.pmd.PMD;
+import net.sourceforge.pmd.PMDConfiguration;
+
 import javax.tools.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -29,6 +35,12 @@ public class Compiler {
                 "    public static void main(String[] args) { print1();}"
                 +
                 "}");
+
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/Basel Alaktaa/Desktop/PMD/TestClass.java"))) {
+            writer.write(javaFileContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //parsing
         JavaObjectFromString javaObjectFromString = null;
         try {
@@ -62,6 +74,14 @@ public class Compiler {
         }
         if (result) {
             System.out.println("build Success");
+
+            PMDConfiguration configuration = new PMDConfiguration();
+            configuration.setInputPaths("C:/Users/Basel Alaktaa/Desktop/PMD/TestClass.java");
+            configuration.setRuleSets("rulesets/java/quickstart.xml");
+            configuration.setReportFormat("json");
+            configuration.setReportFile("C:/Users/Basel Alaktaa/Desktop/PMD/report.json");
+            PMD.doPMD(configuration);
+
             return true;
         } else {
             System.out.println("failed..");
@@ -79,7 +99,7 @@ public class Compiler {
 
 
     public static void main(String[] args) throws Exception {
-        String input = " int print(){  return 1/0;   " +
+        String input = " int print(){  boolean b = \"x\" == \"x1\"; return 1/0;   " +
                 "" +
                 "}";
 
