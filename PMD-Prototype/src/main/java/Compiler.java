@@ -1,15 +1,16 @@
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import net.sourceforge.pmd.PMD;
 import net.sourceforge.pmd.PMDConfiguration;
 
 import javax.tools.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class Compiler {
@@ -67,10 +68,6 @@ public class Compiler {
         for (Diagnostic diagnostic : diagnostics) {
             errorMessage = diagnostic.getMessage(null);
             errorCode =  diagnostic.getCode();
-            System.out.println("msg : " +  errorMessage);
-            System.out.println("code : "  + diagnostic.getCode());
-            System.out.println("source : " + diagnostic.getSource());
-            System.out.println("Kind : " + diagnostic.getKind());
         }
         if (result) {
             System.out.println("build Success");
@@ -81,6 +78,36 @@ public class Compiler {
             configuration.setReportFormat("json");
             configuration.setReportFile("C:/Users/Basel Alaktaa/Desktop/PMD/report.json");
             PMD.doPMD(configuration);
+
+
+            //map to save the Diagnostics
+
+            HashMap<String , JsonArray> styleViolations = new HashMap<>();
+
+
+            //Json Parser @Basel
+            JsonParser jsonParser = new JsonParser();
+            try {
+                Object obj = jsonParser.parse(new FileReader("C:/Users/Basel Alaktaa/Desktop/PMD/report.json"));
+                JsonObject jsonObject = (JsonObject) obj;
+                JsonArray files = (JsonArray) jsonObject.get("files");
+                for (int i = 0; i < files.size(); i++) {
+                    JsonObject tempClass = files.get(i).getAsJsonObject();
+                    String fileName = tempClass.get("filename").toString();
+                    JsonArray tempViolations =  (JsonArray) tempClass.get("violations");
+
+                    styleViolations.put(fileName , tempViolations);
+
+                    ErrorAnalyser errorAnalyser = new ErrorAnalyser(styleViolations);
+                    errorAnalyser.printResultMap();
+
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+
 
             return true;
         } else {
