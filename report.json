@@ -1,0 +1,70 @@
+{
+  "formatVersion": 0,
+  "pmdVersion": "6.33.0",
+  "timestamp": "2021-04-17T17:54:53.266+01:00",
+  "files": [
+    {
+      "filename": "C:\\Users\\user\\Desktop\\Test1\\PMDChecker\\TestClass.java",
+      "violations": [
+        {
+          "beginline": 1,
+          "begincolumn": 33,
+          "endline": 1,
+          "endcolumn": 219,
+          "description": "All classes, interfaces, enums and annotations must belong to a named package",
+          "rule": "NoPackage",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#nopackage"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 1,
+          "endline": 1,
+          "endcolumn": 32,
+          "description": "Avoid unused imports such as \u0027java.lang.reflect.Method\u0027",
+          "rule": "UnusedImports",
+          "ruleset": "Best Practices",
+          "priority": 4,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_bestpractices.html#unusedimports"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 92,
+          "endline": 1,
+          "endcolumn": 100,
+          "description": "Consider simply returning the value vs storing it in local variable \u0027x\u0027",
+          "rule": "UnnecessaryLocalBeforeReturn",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#unnecessarylocalbeforereturn"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 82,
+          "endline": 1,
+          "endcolumn": 89,
+          "description": "Use equals() to compare object references.",
+          "rule": "CompareObjectsWithEquals",
+          "ruleset": "Error Prone",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#compareobjectswithequals"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 82,
+          "endline": 1,
+          "endcolumn": 89,
+          "description": "Use equals() to compare strings instead of \u0027\u003d\u003d\u0027 or \u0027!\u003d\u0027",
+          "rule": "UseEqualsToCompareStrings",
+          "ruleset": "Error Prone",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#useequalstocomparestrings"
+        }
+      ]
+    }
+  ],
+  "suppressedViolations": [],
+  "processingErrors": [],
+  "configurationErrors": []
+}
