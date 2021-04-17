@@ -1,4 +1,5 @@
 
+import com.google.gson.JsonArray;
 import net.sourceforge.pmd.PMD;
 import net.sourceforge.pmd.PMDConfiguration;
 
@@ -8,9 +9,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Compiler {
     private final String input;
@@ -36,7 +44,7 @@ public class Compiler {
                 +
                 "}");
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/Basel Alaktaa/Desktop/PMD/TestClass.java"))) {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/user/Desktop/Test1/PMDChecker/TestClass.java"))) {
             writer.write(javaFileContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,17 +84,50 @@ public class Compiler {
             System.out.println("build Success");
 
             PMDConfiguration configuration = new PMDConfiguration();
-            configuration.setInputPaths("C:/Users/Basel Alaktaa/Desktop/PMD/TestClass.java");
+            configuration.setInputPaths("C:/Users/user/Desktop/Test1/PMDChecker/TestClass.java");
             configuration.setRuleSets("rulesets/java/quickstart.xml");
             configuration.setReportFormat("json");
-            configuration.setReportFile("C:/Users/Basel Alaktaa/Desktop/PMD/report.json");
+            configuration.setReportFile("C:/Users/user/Desktop/Test1/PMDChecker/report.json");
             PMD.doPMD(configuration);
-
+            readReports("C:/Users/user/Desktop/Test1/PMDChecker/report.json");
             return true;
         } else {
             System.out.println("failed..");
         }
         return false;
+    }
+
+    public static JSONArray readReports(String reportPath) {
+        JSONParser parser = new JSONParser();
+        JSONArray result = new JSONArray();
+        try {
+            Object obj = parser.parse(new FileReader("C:/Users/user/Desktop/Test1/PMDChecker/report.json"));
+
+            JSONObject jsonObject =  (JSONObject) obj;
+
+            JSONArray jsonArrayFiles = (JSONArray) jsonObject.get("files");
+            JSONObject jsonArrayFile = (JSONObject) jsonArrayFiles.get(0);
+            JSONArray jsonArrayViolations = (JSONArray) jsonArrayFile.get("violations");
+            result = jsonArrayViolations;
+            List<StyleFeedbackEntry> styleFeedbackEntries = new LinkedList<>();
+            jsonArrayViolations.forEach(  var -> {
+                JSONObject jsonObject1 = (JSONObject) var;
+                if(
+                        (Long)jsonObject1.get("priority") <= 1
+                ) {
+                    styleFeedbackEntries.add(new StyleFeedbackEntry(jsonObject1));
+                }
+            });
+
+            styleFeedbackEntries.forEach(System.out::println);
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        return result;
     }
 
     public String getErrorMessage() {
@@ -99,13 +140,13 @@ public class Compiler {
 
 
     public static void main(String[] args) throws Exception {
-        String input = " int print(){  boolean b = \"x\" == \"x1\"; return 1/0;   " +
+        String input = "  boolean print(){  boolean x = \"l\"==\"t\"; return x;   " +
                 "" +
                 "}";
 
         List<Integer> list = new ArrayList<>();
+boolean x = "l"=="t";
 
-        boolean b = "x" == "x1";
 
         Compiler compiler = new Compiler(input);
 
