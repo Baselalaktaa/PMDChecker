@@ -26,7 +26,10 @@ public class Compiler {
     }
 
     //todo: Enum for Input as Whole Class or Just Method
-    //todo :Enum for Difficulty
+    //todo: Enum for Difficulty/priority
+    //todo: Class name generic
+    //todo: Java Doc
+    //todo: edit Filepath for report.json, TestClass.java
     public SimpleJavaFileObject getJavaFileContentFromString() {
         StringBuilder javaFileContent = new StringBuilder("" + "import java.lang.reflect.Method;" +
                 "class TestClass {" +
@@ -77,11 +80,10 @@ public class Compiler {
             configuration.setRuleSets("rulesets/java/quickstart.xml");
             configuration.setReportFormat("json");
             configuration.setReportFile("C:/Users/Basel Alaktaa/Desktop/PMD/report.json");
+            configuration.setIgnoreIncrementalAnalysis(false);
             PMD.doPMD(configuration);
 
-
             //map to save the Diagnostics
-
             HashMap<String , JsonArray> styleViolations = new HashMap<>();
 
 
@@ -106,9 +108,6 @@ public class Compiler {
             catch (Exception e){
                 e.printStackTrace();
             }
-
-
-
             return true;
         } else {
             System.out.println("failed..");
@@ -126,7 +125,7 @@ public class Compiler {
 
 
     public static void main(String[] args) throws Exception {
-        String input = " int print(){  boolean b = \"x\" == \"x1\"; return 1/0;   " +
+        String input = " int print(int a , int b){  boolean b1 = \"x\" == \"x1\"; return a + b;   " +
                 "" +
                 "}";
 
