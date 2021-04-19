@@ -69,10 +69,10 @@ public class Compiler {
         if (result) {
             System.out.println("build Success");
             StyleChecker styleChecker = new StyleChecker();
-            styleChecker.run(null);
+            styleChecker.run("ruleset.xml");
 
             //map to save the Diagnostics
-            HashMap<String , JsonArray> styleViolations = new HashMap<>();
+            HashMap<String , JsonArray> styleViolations;
 
 
             ViolationsFromJsonParser violations = new ViolationsFromJsonParser();

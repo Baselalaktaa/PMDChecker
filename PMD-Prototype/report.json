@@ -1,7 +1,7 @@
 {
   "formatVersion": 0,
   "pmdVersion": "6.33.0",
-  "timestamp": "2021-04-19T17:27:05.122+02:00",
+  "timestamp": "2021-04-19T23:32:23.830+02:00",
   "files": [
     {
       "filename": "C:\\Users\\Basel Alaktaa\\Desktop\\PMD\\RepoPMD\\PMDChecker\\PMD-Prototype\\TestClass.java",
@@ -38,6 +38,39 @@
           "ruleset": "Best Practices",
           "priority": 3,
           "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_bestpractices.html#unusedlocalvariable"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 33,
+          "endline": 1,
+          "endcolumn": 235,
+          "description": "Class comments are required",
+          "rule": "CommentRequired",
+          "ruleset": "Documentation",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_documentation.html#commentrequired"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 135,
+          "endline": 1,
+          "endcolumn": 179,
+          "description": "Public method and constructor comments are required",
+          "rule": "CommentRequired",
+          "ruleset": "Documentation",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_documentation.html#commentrequired"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 198,
+          "endline": 1,
+          "endcolumn": 234,
+          "description": "Public method and constructor comments are required",
+          "rule": "CommentRequired",
+          "ruleset": "Documentation",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_documentation.html#commentrequired"
         },
         {
           "beginline": 1,

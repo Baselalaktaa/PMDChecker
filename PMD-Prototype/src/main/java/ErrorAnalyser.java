@@ -24,6 +24,8 @@ public class ErrorAnalyser {
         potentialErrors.add("compiler.err.expected");
     }
 
+
+    //todo Key/Value for Errors
     public ErrorAnalyser(HashMap<String , JsonArray> styleViolations){
         potentialErrors = new ArrayList<>();
 
