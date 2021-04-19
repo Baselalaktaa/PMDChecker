@@ -5,7 +5,7 @@ import java.io.File;
 
 public class PMDConfig {
 
-    public void run(File... files){
+    public void run(String... ruleSets){
         PMDConfiguration configuration = new PMDConfiguration();
         configuration.setInputPaths("C:/Users/Basel Alaktaa/Desktop/PMD/TestClass.java");
         configuration.setRuleSets("rulesets/java/quickstart.xml");

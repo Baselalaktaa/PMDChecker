@@ -27,7 +27,7 @@ public class Compiler {
 
     //todo: Enum for Input as Whole Class or Just Method
     //todo: Enum for Difficulty/priority
-    //todo: Class name generic
+    //todo: Class name generic @started
     //todo: Java Doc
     //todo: edit Filepath for report.json, TestClass.java
     public SimpleJavaFileObject getJavaFileContentFromString() {
@@ -74,40 +74,18 @@ public class Compiler {
         }
         if (result) {
             System.out.println("build Success");
-
-            PMDConfiguration configuration = new PMDConfiguration();
-            configuration.setInputPaths("C:/Users/Basel Alaktaa/Desktop/PMD/TestClass.java");
-            configuration.setRuleSets("rulesets/java/quickstart.xml");
-            configuration.setReportFormat("json");
-            configuration.setReportFile("C:/Users/Basel Alaktaa/Desktop/PMD/report.json");
-            configuration.setIgnoreIncrementalAnalysis(false);
-            PMD.doPMD(configuration);
+            PMDConfig pmdConfig = new PMDConfig();
+            pmdConfig.run("rulesets/java/quickstart.xml");
 
             //map to save the Diagnostics
             HashMap<String , JsonArray> styleViolations = new HashMap<>();
 
 
-            //Json Parser @Basel
-            JsonParser jsonParser = new JsonParser();
-            try {
-                Object obj = jsonParser.parse(new FileReader("C:/Users/Basel Alaktaa/Desktop/PMD/report.json"));
-                JsonObject jsonObject = (JsonObject) obj;
-                JsonArray files = (JsonArray) jsonObject.get("files");
-                for (int i = 0; i < files.size(); i++) {
-                    JsonObject tempClass = files.get(i).getAsJsonObject();
-                    String fileName = tempClass.get("filename").toString();
-                    JsonArray tempViolations =  (JsonArray) tempClass.get("violations");
+            ViolationsFromJsonParser violations = new ViolationsFromJsonParser();
 
-                    styleViolations.put(fileName , tempViolations);
-
-                    ErrorAnalyser errorAnalyser = new ErrorAnalyser(styleViolations);
-                    errorAnalyser.printResultMap();
-
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
+            styleViolations = violations.parse("report.json");
+            ErrorAnalyser errorAnalyser = new ErrorAnalyser(styleViolations);
+            errorAnalyser.printResultMap();
             return true;
         } else {
             System.out.println("failed..");
