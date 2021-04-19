@@ -1,9 +1,5 @@
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import net.sourceforge.pmd.PMD;
-import net.sourceforge.pmd.PMDConfiguration;
 
 import javax.tools.*;
 import java.io.*;
@@ -25,11 +21,9 @@ public class Compiler {
         this.errorCode = "";
     }
 
-    //todo: Enum for Input as Whole Class or Just Method
+
     //todo: Enum for Difficulty/priority
-    //todo: Class name generic @started
-    //todo: Java Doc
-    //todo: edit Filepath for report.json, TestClass.java
+    //todo: Java Doc @later
     public SimpleJavaFileObject getJavaFileContentFromString() {
         StringBuilder javaFileContent = new StringBuilder("" + "import java.lang.reflect.Method;" +
                 "class TestClass {" +
@@ -74,8 +68,8 @@ public class Compiler {
         }
         if (result) {
             System.out.println("build Success");
-            PMDConfig pmdConfig = new PMDConfig();
-            pmdConfig.run("rulesets/java/quickstart.xml");
+            StyleChecker styleChecker = new StyleChecker();
+            styleChecker.run(null);
 
             //map to save the Diagnostics
             HashMap<String , JsonArray> styleViolations = new HashMap<>();
@@ -103,7 +97,7 @@ public class Compiler {
 
 
     public static void main(String[] args) throws Exception {
-        String input = " int print(int a , int b){  boolean b1 = \"x\" == \"x1\"; return a + b;   " +
+        String input = "class X{ int print(int a , int b){  boolean b1 = \"x\" == \"x1\"; return a + b;   }" +
                 "" +
                 "}";
 

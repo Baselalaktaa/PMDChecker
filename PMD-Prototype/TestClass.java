@@ -1,0 +1,1 @@
+import java.lang.reflect.Method;class TestClass { int print(int a , int b){  boolean b1 = "x" == "x1"; return a + b;   }public static void print1(){System.out.println(" hallo ");}    public static void main(String[] args) { print1();}}
