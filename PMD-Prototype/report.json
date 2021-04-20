@@ -1,7 +1,7 @@
 {
   "formatVersion": 0,
   "pmdVersion": "6.33.0",
-  "timestamp": "2021-04-19T23:32:23.830+02:00",
+  "timestamp": "2021-04-20T16:04:36.529+02:00",
   "files": [
     {
       "filename": "C:\\Users\\Basel Alaktaa\\Desktop\\PMD\\RepoPMD\\PMDChecker\\PMD-Prototype\\TestClass.java",
@@ -10,12 +10,23 @@
           "beginline": 1,
           "begincolumn": 33,
           "endline": 1,
-          "endcolumn": 235,
+          "endcolumn": 244,
           "description": "All classes, interfaces, enums and annotations must belong to a named package",
           "rule": "NoPackage",
           "ruleset": "Code Style",
           "priority": 3,
           "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#nopackage"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 49,
+          "endline": 1,
+          "endcolumn": 244,
+          "description": "All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.",
+          "rule": "UseUtilityClass",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_design.html#useutilityclass"
         },
         {
           "beginline": 1,
@@ -30,9 +41,9 @@
         },
         {
           "beginline": 1,
-          "begincolumn": 86,
+          "begincolumn": 94,
           "endline": 1,
-          "endcolumn": 87,
+          "endcolumn": 95,
           "description": "Avoid unused local variables such as \u0027b1\u0027.",
           "rule": "UnusedLocalVariable",
           "ruleset": "Best Practices",
@@ -43,7 +54,7 @@
           "beginline": 1,
           "begincolumn": 33,
           "endline": 1,
-          "endcolumn": 235,
+          "endcolumn": 244,
           "description": "Class comments are required",
           "rule": "CommentRequired",
           "ruleset": "Documentation",
@@ -52,9 +63,20 @@
         },
         {
           "beginline": 1,
-          "begincolumn": 135,
+          "begincolumn": 50,
           "endline": 1,
-          "endcolumn": 179,
+          "endcolumn": 129,
+          "description": "Class comments are required",
+          "rule": "CommentRequired",
+          "ruleset": "Documentation",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_documentation.html#commentrequired"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 144,
+          "endline": 1,
+          "endcolumn": 188,
           "description": "Public method and constructor comments are required",
           "rule": "CommentRequired",
           "ruleset": "Documentation",
@@ -63,9 +85,9 @@
         },
         {
           "beginline": 1,
-          "begincolumn": 198,
+          "begincolumn": 207,
           "endline": 1,
-          "endcolumn": 234,
+          "endcolumn": 243,
           "description": "Public method and constructor comments are required",
           "rule": "CommentRequired",
           "ruleset": "Documentation",
@@ -74,9 +96,9 @@
         },
         {
           "beginline": 1,
-          "begincolumn": 91,
+          "begincolumn": 99,
           "endline": 1,
-          "endcolumn": 101,
+          "endcolumn": 109,
           "description": "Use equals() to compare object references.",
           "rule": "CompareObjectsWithEquals",
           "ruleset": "Error Prone",
@@ -85,9 +107,9 @@
         },
         {
           "beginline": 1,
-          "begincolumn": 91,
+          "begincolumn": 99,
           "endline": 1,
-          "endcolumn": 101,
+          "endcolumn": 109,
           "description": "Use equals() to compare strings instead of \u0027\u003d\u003d\u0027 or \u0027!\u003d\u0027",
           "rule": "UseEqualsToCompareStrings",
           "ruleset": "Error Prone",

@@ -34,7 +34,7 @@ public class Compiler {
                 +
                 "}");
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/Basel Alaktaa/Desktop/PMD/TestClass.java"))) {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("TestClass.java"))) {
             writer.write(javaFileContent.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -106,13 +106,9 @@ public class Compiler {
         boolean b = "x" == "x1";
 
         Compiler compiler = new Compiler(input);
-
         compiler.compile();
-
         System.out.println(compiler.getErrorCode());
         System.out.println(compiler.getErrorMessage());
-
 //        System.out.println("var hier".contains("var"));
-
     }
 }
