@@ -3,16 +3,40 @@ import com.google.gson.JsonArray;
 import net.sourceforge.pmd.PMD;
 import net.sourceforge.pmd.PMDConfiguration;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import net.sourceforge.pmd.PMD;
+import net.sourceforge.pmd.PMDConfiguration;
+import net.sourceforge.pmd.RuleContext;
+import net.sourceforge.pmd.RulePriority;
+import net.sourceforge.pmd.RuleSetFactory;
+import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.RulesetsFactoryUtils;
+import net.sourceforge.pmd.ThreadSafeReportListener;
+import net.sourceforge.pmd.renderers.Renderer;
+import net.sourceforge.pmd.renderers.XMLRenderer;
+import net.sourceforge.pmd.stat.Metric;
+import net.sourceforge.pmd.util.ClasspathClassLoader;
+import net.sourceforge.pmd.util.datasource.DataSource;
+import net.sourceforge.pmd.util.datasource.FileDataSource;
+
 import javax.tools.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.util.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 import org.json.simple.JSONArray;
@@ -82,14 +106,30 @@ public class Compiler {
         }
         if (result) {
             System.out.println("build Success");
+//            File f = File.createTempFile("temp" , ".java");
+//            OutputStream s = new FileOutputStream(f);
+//            s.write(input.getBytes(StandardCharsets.UTF_8));
+//            s.flush();
+//            s.close();
+//
+//            InputStream inputStream = new FileInputStream(f);
+//            byte[] bbb =  inputStream.readAllBytes();
 
             PMDConfiguration configuration = new PMDConfiguration();
             configuration.setInputPaths("C:/Users/user/Desktop/Test1/PMDChecker/TestClass.java");
-            configuration.setRuleSets("rulesets/java/quickstart.xml");
-            configuration.setReportFormat("json");
-            configuration.setReportFile("C:/Users/user/Desktop/Test1/PMDChecker/report.json");
-            PMD.doPMD(configuration);
-            readReports("C:/Users/user/Desktop/Test1/PMDChecker/report.json");
+           // configuration.setRuleSets("rulesets/java/quickstart.xml");
+            List<String> list = new LinkedList<>();
+            list.add("rulesets/java/quickstart.xml");
+            list.add("category/java/documentation.xml");
+            list.add("category/java/codestyle.xml");
+            for(int i = 0;i<list.size();i++) {
+                configuration.setRuleSets(list.get(i));
+                configuration.setReportFormat("json");
+                configuration.setReportFile("C:/Users/user/Desktop/Test1/PMDChecker/report.json");
+
+                PMD.doPMD(configuration);
+                readReports("C:/Users/user/Desktop/Test1/PMDChecker/report.json");
+            }
             return true;
         } else {
             System.out.println("failed..");
@@ -113,7 +153,7 @@ public class Compiler {
             jsonArrayViolations.forEach(  var -> {
                 JSONObject jsonObject1 = (JSONObject) var;
                 if(
-                        (Long)jsonObject1.get("priority") <= 1
+                        (Long)jsonObject1.get("priority") <=5
                 ) {
                     styleFeedbackEntries.add(new StyleFeedbackEntry(jsonObject1));
                 }

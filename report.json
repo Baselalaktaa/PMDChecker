@@ -1,7 +1,7 @@
 {
   "formatVersion": 0,
   "pmdVersion": "6.33.0",
-  "timestamp": "2021-04-17T17:54:53.266+01:00",
+  "timestamp": "2021-04-19T22:14:47.610+01:00",
   "files": [
     {
       "filename": "C:\\Users\\user\\Desktop\\Test1\\PMDChecker\\TestClass.java",
@@ -19,14 +19,14 @@
         },
         {
           "beginline": 1,
-          "begincolumn": 1,
+          "begincolumn": 78,
           "endline": 1,
-          "endcolumn": 32,
-          "description": "Avoid unused imports such as \u0027java.lang.reflect.Method\u0027",
-          "rule": "UnusedImports",
-          "ruleset": "Best Practices",
-          "priority": 4,
-          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_bestpractices.html#unusedimports"
+          "endcolumn": 78,
+          "description": "Avoid variables with short names like x",
+          "rule": "ShortVariable",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#shortvariable"
         },
         {
           "beginline": 1,
@@ -41,25 +41,58 @@
         },
         {
           "beginline": 1,
-          "begincolumn": 82,
+          "begincolumn": 33,
           "endline": 1,
-          "endcolumn": 89,
-          "description": "Use equals() to compare object references.",
-          "rule": "CompareObjectsWithEquals",
-          "ruleset": "Error Prone",
+          "endcolumn": 219,
+          "description": "Each class should declare at least one constructor",
+          "rule": "AtLeastOneConstructor",
+          "ruleset": "Code Style",
           "priority": 3,
-          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#compareobjectswithequals"
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#atleastoneconstructor"
         },
         {
           "beginline": 1,
-          "begincolumn": 82,
+          "begincolumn": 70,
           "endline": 1,
           "endcolumn": 89,
-          "description": "Use equals() to compare strings instead of \u0027\u003d\u003d\u0027 or \u0027!\u003d\u0027",
-          "rule": "UseEqualsToCompareStrings",
-          "ruleset": "Error Prone",
+          "description": "Local variable \u0027x\u0027 could be declared final",
+          "rule": "LocalVariableCouldBeFinal",
+          "ruleset": "Code Style",
           "priority": 3,
-          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#useequalstocomparestrings"
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablecouldbefinal"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 192,
+          "endline": 1,
+          "endcolumn": 204,
+          "description": "Parameter \u0027args\u0027 is not assigned and could be declared final",
+          "rule": "MethodArgumentCouldBeFinal",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#methodargumentcouldbefinal"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 52,
+          "endline": 1,
+          "endcolumn": 104,
+          "description": "To avoid mistakes add a comment at the beginning of the print method if you want a default access modifier",
+          "rule": "CommentDefaultAccessModifier",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#commentdefaultaccessmodifier"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 52,
+          "endline": 1,
+          "endcolumn": 104,
+          "description": "Use explicit scoping instead of the default package private level",
+          "rule": "DefaultPackage",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#defaultpackage"
         }
       ]
     }
