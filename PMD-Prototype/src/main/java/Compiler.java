@@ -4,10 +4,7 @@ import com.google.gson.JsonArray;
 import javax.tools.*;
 import java.io.*;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Compiler {
     private final String input;
@@ -65,6 +62,7 @@ public class Compiler {
         for (Diagnostic diagnostic : diagnostics) {
             errorMessage = diagnostic.getMessage(null);
             errorCode =  diagnostic.getCode();
+
         }
         if (result) {
             System.out.println("build Success");
@@ -97,7 +95,7 @@ public class Compiler {
 
 
     public static void main(String[] args) throws Exception {
-        String input = "class X{ int print(int a , int b){  boolean b1 = \"x\" == \"x1\"; return a + b;   }" +
+        String input = "class X{ int print(int a , int b){  boolean b1 = \"x\" == \"x1\" return a + b;   }" +
                 "" +
                 "}";
 
